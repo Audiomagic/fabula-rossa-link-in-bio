@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabula Rossa - Fiabe e audiolibri per bambini</title>
+  <meta name="description" content="Fabula Rossa crea fiabe illustrate, audiolibri e storie della buonanotte per bambini e famiglie.">
+  <meta property="og:title" content="Fabula Rossa">
+  <meta property="og:description" content="Fiabe illustrate, audiolibri e piccole magie della buonanotte.">
+  <meta property="og:image" content="assets/fabula-rossa-logo.jpg">
+  <meta name="theme-color" content="#8f1f18">
+  <link rel="icon" href="assets/favicon.jpg">
+  <style>
+    :root {
+      --cream: #fbf5e8;
+      --paper: #fffaf0;
+      --ink: #332414;
+      --muted: #7d684e;
+      --red: #9d241c;
+      --red-dark: #671710;
+      --gold: #bf9650;
+      --green: #395d3c;
+      --sky: #d9edf1;
+      --shadow: 0 18px 45px rgba(70, 35, 14, .14);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(191, 150, 80, .16), transparent 34rem),
+        radial-gradient(circle at 85% 8%, rgba(157, 36, 28, .12), transparent 24rem),
+        linear-gradient(180deg, var(--cream) 0%, #fffdf8 52%, #f8eddb 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      padding: 18px 18px 38px;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+      padding: 18px 0 30px;
+    }
+
+    .hero-media {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+    }
+
+    .logo-shell {
+      width: min(88vw, 430px);
+      background: rgba(255, 250, 240, .86);
+      border: 1px solid rgba(191, 150, 80, .26);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .logo-shell img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.65rem, 12vw, 5.9rem);
+      line-height: .9;
+      color: var(--red);
+      text-align: center;
+      letter-spacing: 0;
+    }
+
+    .subhead {
+      margin: 0 auto;
+      max-width: 680px;
+      color: #543d28;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.08rem, 4.5vw, 1.6rem);
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      width: min(100%, 480px);
+      margin: 0 auto;
+    }
+
+    .button {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(103, 23, 16, .16);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 28px rgba(103, 23, 16, .2);
+    }
+
+    .primary {
+      color: #fff8ed;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+    }
+
+    .secondary {
+      color: var(--red-dark);
+      background: rgba(255, 250, 240, .94);
+      border: 1px solid rgba(191, 150, 80, .34);
+    }
+
+    .note {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      text-align: center;
+    }
+
+    section {
+      padding: 46px 0 0;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 7vw, 3.35rem);
+      line-height: 1;
+      color: var(--red-dark);
+      letter-spacing: 0;
+    }
+
+    .section-copy {
+      margin: 0 0 22px;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .feature {
+      display: grid;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      background: rgba(255, 250, 240, .78);
+      border: 1px solid rgba(191, 150, 80, .22);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature img,
+    .world img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+
+    .feature h2,
+    .world h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--red-dark);
+      letter-spacing: 0;
+    }
+
+    .feature h2 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+
+    .feature p,
+    .world p {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .feature p { margin: 10px 0 18px; }
+
+    .mini-link {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: #fff8ed;
+      background: var(--green);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .worlds {
+      display: grid;
+      gap: 14px;
+    }
+
+    .world {
+      background: rgba(255, 250, 240, .78);
+      border: 1px solid rgba(191, 150, 80, .22);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(70, 35, 14, .11);
+    }
+
+    .world div { padding: 15px; }
+
+    .world h3 { font-size: 1.35rem; }
+
+    .world p {
+      margin: 8px 0 0;
+      font-size: .96rem;
+    }
+
+    .quote-band {
+      margin-top: 44px;
+      padding: 28px 20px;
+      background: linear-gradient(135deg, var(--red-dark), var(--red));
+      border-radius: var(--radius);
+      color: #fff8ed;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .quote-band p {
+      margin: 0 auto;
+      max-width: 720px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.5rem, 6vw, 2.7rem);
+      line-height: 1.12;
+    }
+
+    footer {
+      padding: 30px 0 8px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    @media (min-width: 760px) {
+      .page { padding-inline: 28px; }
+
+      .hero {
+        min-height: 88vh;
+        grid-template-columns: .86fr 1.14fr;
+        align-items: center;
+        gap: 42px;
+      }
+
+      .hero-media { order: 2; }
+
+      .hero-copy { order: 1; }
+
+      h1,
+      .subhead,
+      .eyebrow { text-align: left; }
+
+      .subhead { margin-left: 0; }
+
+      .actions { margin-left: 0; }
+
+      .note { text-align: left; }
+
+      .feature {
+        grid-template-columns: .8fr 1.2fr;
+        padding: 22px;
+      }
+
+      .worlds {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-media">
+        <div class="logo-shell">
+          <img src="assets/fabula-rossa-logo.jpg" alt="Fabula Rossa, edizioni di fiabe">
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Edizioni di fiabe</p>
+        <h1>Fabula Rossa</h1>
+        <p class="subhead">Fiabe illustrate, audiolibri e piccole magie della buonanotte per bambini e famiglie.</p>
+
+        <nav class="actions" aria-label="Link principali">
+          <a class="button primary" href="https://www.amazon.it/dp/B0GVPSQSR9">Scopri il libro su Amazon</a>
+          <a class="button secondary" href="#audiolibri">Ascolta gli audiolibri</a>
+          <a class="button secondary" href="#mondi">Entra nei mondi delle fiabe</a>
+        </nav>
+
+        <p class="note">Un link semplice per trovare libri, audio e contenuti speciali.</p>
+      </div>
+    </header>
+
+    <section id="libro">
+      <article class="feature">
+        <img src="assets/copertina-100-favole.jpg" alt="Copertina del libro 100 Favole per Bambini Audiolibro">
+        <div>
+          <h2>100 Favole per Bambini</h2>
+          <p>Un viaggio tra boschi, castelli, mare, stelle e storie della buonanotte. Ogni favola porta con se' una piccola morale da custodire.</p>
+          <a class="mini-link" href="https://www.amazon.it/dp/B0GVPSQSR9">Vai al libro</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="audiolibri">
+      <h2 class="section-title">Audiolibri</h2>
+      <p class="section-copy">Le storie di Fabula Rossa sono pensate anche per essere ascoltate: una voce, un'immagine e qualche minuto di quiete prima della nanna.</p>
+      <article class="feature">
+        <img src="assets/dormitu.jpg" alt="Dormitu nel suo mondo incantato">
+        <div>
+          <h2>Dormitu e il regno dei sogni</h2>
+          <p>Dormitu accompagna i bambini in un mondo tenero, notturno e rassicurante, fatto di lune gentili, piccole paure e grandi abbracci.</p>
+          <a class="mini-link" href="#contatti">Segui gli aggiornamenti</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="mondi">
+      <h2 class="section-title">Mondi da scoprire</h2>
+      <p class="section-copy">Ogni raccolta e' organizzata come un piccolo territorio narrativo, cosi' i bambini possono tornare dove si sentono piu' a casa.</p>
+
+      <div class="worlds">
+        <article class="world">
+          <img src="assets/bosco.jpg" alt="Il Bosco Incantato">
+          <div>
+            <h3>Bosco Incantato</h3>
+            <p>Ricci, volpi, alberi saggi e amicizie nate piano.</p>
+          </div>
+        </article>
+        <article class="world">
+          <img src="assets/castelli.jpg" alt="Castelli Magici">
+          <div>
+            <h3>Castelli Magici</h3>
+            <p>Principi, draghi gentili e coraggio in formato bambino.</p>
+          </div>
+        </article>
+        <article class="world">
+          <img src="assets/buonanotte.jpg" alt="Buonanotte">
+          <div>
+            <h3>Buonanotte</h3>
+            <p>Storie morbide per chiudere gli occhi con serenita'.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-band" aria-label="Frase Fabula Rossa">
+      <p>Ogni sera una piccola storia gentile.</p>
+    </section>
+
+    <footer id="contatti">
+      <p>Fabula Rossa - Edizioni di fiabe</p>
+      <p>Instagram: @fabularossa</p>
+    </footer>
+  </main>
+</body>
+</html>
+
